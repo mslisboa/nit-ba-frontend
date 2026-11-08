@@ -43,6 +43,15 @@ Tecnologia principal:
 
 - Next.js.
 
+Stack definido no scaffolding inicial (commit `7d0070f`):
+
+- Next.js 16.4.5, com App Router (`src/app`);
+- React 19.3.0;
+- TypeScript ^5;
+- ESLint 9;
+- Gerenciador de pacotes: **npm**;
+- Testes: Vitest.
+
 Tecnologias complementares devem seguir as escolhas já adotadas pelo Observatório e pelo repositório existente.
 
 Antes de adicionar bibliotecas, verificar:
@@ -304,6 +313,21 @@ Exemplo conceitual:
 NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 
 Não armazenar credenciais ou segredos em variáveis NEXT_PUBLIC_.
+
+### 8.0.1 Variáveis NEXT_PUBLIC_ em produção (contrato com nit-ba-infra)
+
+No Next.js, variáveis NEXT_PUBLIC_ são incorporadas ao bundle JavaScript em
+tempo de build. Em container, a URL da API visível ao navegador é fixada
+quando a imagem é construída (ver Dockerfile, estágio build, com
+ARG/ENV NEXT_PUBLIC_API_URL).
+
+Consequência para a orquestração:
+
+- Passar NEXT_PUBLIC_API_URL como build argument no Compose;
+- Alteração de URL da API exige reconstrução da imagem, não apenas
+  alteração de environment;
+- Alteração da URL apenas para consultas no servidor (SSR/RSC) pode
+  continuar sendo feita por variável de ambiente em tempo de execução.
 
 ### 8.1 Contratos
 
