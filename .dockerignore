@@ -1,0 +1,26 @@
+# Controle de versão
+.git
+.gitignore
+
+# Dependências e artefatos de build
+node_modules
+.next
+out
+
+# Ambiente e documentação local
+.env
+.env.local
+.env.*.local
+docs
+AGENTS.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Testes e utilitários
+tests
+*.log
+.vscode
+.idea
+.DS_Store
