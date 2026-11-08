@@ -93,7 +93,6 @@ Consulte a documentação utilizando a ferramenta Read.
 
 - Arquitetura: @docs/architecture.md
 - Modelo de dados: @docs/data-model.md
-- Desenvolvimento: @docs/development.md
 
 Consulte também os documentos específicos do
 componente quando a tarefa exigir.
