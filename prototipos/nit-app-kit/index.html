@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="NITs do ecossistema de Ciência, Tecnologia e Inovação da Bahia">
+  <title>Nit.app.kit — Inovação na Bahia</title>
+  <link rel="stylesheet" href="styles.css?v=20261118-kit-01">
+  <link rel="stylesheet" href="kit-ui.css?v=20261118-titulos-02">
+</head>
+<body data-variant="1">
+  <a class="skip-link" href="#app">Pular para o conteúdo</a>
+  <div id="accessibility-status" class="sr-only" role="status" aria-live="polite"></div>
+  <div class="prototype-bar" role="banner">
+    <div class="institutional-brands">
+      <img class="government-logo" src="assets/logos/governo-bahia.jpeg" alt="Governo da Bahia — Secretaria de Ciência, Tecnologia e Inovação">
+      <span class="institutional-divider" aria-hidden="true"></span>
+      <img class="observatory-symbol-logo" src="assets/logos/observatorio.png" alt="Observatório">
+      <img class="observatory-cti-logo" src="assets/logos/observatorio-cti.png" alt="Observatório de CT&amp;I da Bahia">
+    </div>
+    <nav class="version-switcher" aria-label="Versões do protótipo">
+      <a href="?versao=geral#inicio" data-version-link="geral">Versão geral</a>
+      <a href="?versao=v1#inicio" data-version-link="v1">V1</a>
+    </nav>
+  </div>
+
+  <div class="site-shell">
+    <div class="brand-stripe" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="sidebar-head">
+        <a class="brand" href="#inicio" aria-label="Página inicial de NITs">
+          <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>NITs</strong></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      </div>
+      <nav id="main-nav" aria-label="Navegação principal">
+        <span class="nav-section">Principal</span>
+        <a href="#inicio" data-route-link="inicio"><span class="nav-icon">⌂</span><span>Início</span></a>
+        <span class="nav-section">Ecossistema</span>
+        <a href="#nits" data-route-link="nits"><span class="nav-icon">N</span><span data-nits-nav-label>Instituições e NITs</span><b>12</b></a>
+        <a href="#instituicoes" data-route-link="instituicoes" data-v1-only hidden><span class="nav-icon">I</span><span>Instituições</span><b>12</b></a>
+        <a href="#territorios" data-route-link="territorios"><span class="nav-icon">T</span><span>Territórios</span><b>27</b></a>
+        <a href="#pesquisadores" data-route-link="pesquisadores"><span class="nav-icon">P</span><span>Pesquisadores</span></a>
+        <span class="nav-section">Inovação</span>
+        <a href="#tecnologias" data-route-link="tecnologias" data-general-only><span class="nav-icon">TC</span><span>Tecnologias</span></a>
+        <a href="#propriedade" data-route-link="propriedade"><span class="nav-icon">PI</span><span>Propriedade intelectual</span></a>
+        <a href="#eventos" data-route-link="eventos" data-general-only><span class="nav-icon">E</span><span>Eventos e formação</span></a>
+        <span class="nav-section">Dados</span>
+        <a href="#indicadores" data-route-link="indicadores"><span class="nav-icon">↗</span><span>Indicadores</span></a>
+        <a href="#fontes" data-route-link="fontes"><span class="nav-icon">F</span><span>Fontes e metodologia</span></a>
+        <button class="accessibility" type="button" aria-label="Ampliar tamanho do texto" aria-pressed="false">A+ <span>Ampliar texto</span></button>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1"></main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Observatório de CT&amp;I da Bahia</strong>
+        <p>Entidades públicas são usadas como referência; métricas e registros operacionais são fictícios.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#eventos" data-general-only>Eventos</a>
+        <a href="#fontes">Fontes e metodologia</a>
+        <a href="#mapa-do-site">Mapa do site</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js?v=20261118-kit-05"></script>
+</body>
+</html>
