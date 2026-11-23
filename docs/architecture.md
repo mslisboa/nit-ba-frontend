@@ -25,7 +25,8 @@ O frontend é responsável por:
 6. Disponibilizar páginas de consulta e detalhes.
 7. Gerenciar estados de carregamento, erro e ausência de dados.
 8. Garantir uma interface responsiva e acessível.
-9. Manter compatibilidade visual com o Observatório de CT&I da Bahia.
+9. Apresentar o status de validação das associações NIT–PI.
+10. Manter compatibilidade visual com o Observatório de CT&I da Bahia.
 
 O frontend NÃO é responsável por:
 
@@ -34,6 +35,7 @@ O frontend NÃO é responsável por:
 - Extrair dados de fontes externas;
 - Implementar regras de integração entre fontes;
 - Realizar correspondências entre pesquisadores e instituições;
+- Criar, confirmar ou reclassificar associações entre NIT e PI;
 - Definir a estrutura física do banco;
 - Implementar regras de negócio pertencentes ao backend.
 
@@ -187,9 +189,12 @@ Funcionalidades:
 - Filtros;
 - Paginação;
 - Página de detalhes;
-- Navegação para a instituição relacionada.
+- Navegação para a instituição relacionada;
+- Propriedades intelectuais associadas ao NIT, com o respectivo status de validação.
 
 A página de detalhes deve apresentar somente informações disponíveis na API.
+
+A associação entre NIT e PI deve ser apresentada com tags derivadas de `status_validacao`. Uma PI só deve ser exibida como validada (tag "Confirmada") para o NIT quando o status da associação for `CONFIRMADA`.
 
 ### 6.3 Instituições/ICTs
 
@@ -202,7 +207,7 @@ Funcionalidades:
 - Filtros;
 - Página de detalhes;
 - NIT relacionado;
-- Unidades institucionais, quando disponíveis;
+- Presença da instituição em municípios, quando disponível;
 - Pesquisadores relacionados;
 - Propriedade intelectual relacionada;
 - Localização territorial.
@@ -218,7 +223,7 @@ Funcionalidades:
 - Filtros;
 - Página de detalhes;
 - Instituições relacionadas;
-- Áreas de atuação;
+- Identificadores disponíveis (`id_simcc`, `id_lattes`, `orcid`);
 - Propriedade intelectual associada, quando disponível.
 
 Não apresentar relacionamentos que não tenham sido confirmados pelo backend.
@@ -234,13 +239,48 @@ Funcionalidades:
 - Filtros por modalidade;
 - Filtros por instituição;
 - Filtros por pesquisador;
+- Filtros por NIT;
+- Filtros por status de validação da associação NIT–PI;
 - Filtros por período;
 - Página de detalhes;
-- Identificação de titulares, depositantes, inventores e autores, quando disponíveis.
+- Identificação de titulares, depositantes, inventores e autores, quando disponíveis;
+- Tags de validação por NIT associado.
 
 Não duplicar registros na interface para representar múltiplos participantes.
 
-### 6.6 Territórios de Identidade
+A PI não possui status de validação próprio. As tags devem ser derivadas das associações NIT–PI retornadas pela API.
+
+### 6.6 Associações NIT–Propriedade Intelectual
+
+Responsável por apresentar a relação entre NIT e PI e seu estado de validação.
+
+Funcionalidades:
+
+- Exibir PIs associadas a um NIT;
+- Exibir NITs associados a uma PI;
+- Apresentar `status_validacao`, `metodo_identificacao`, `metodo_validacao`, `data_identificacao`, `data_validacao` e `referencia_evidencia`;
+- Utilizar tags para classificar visualmente as PIs já validadas;
+- Permitir navegação entre NIT e PI.
+
+As associações são criadas e validadas pelo backend, com base no cruzamento de inventores e pesquisadores e nos relatórios dos NITs.
+
+O frontend é somente leitura nesta versão. A operação de validação será disponibilizada pelo backend em fase posterior, com contrato e permissões próprios.
+
+Estados possíveis de `status_validacao`:
+
+- `PENDENTE` — associação identificada automaticamente, aguardando validação;
+- `CONFIRMADA` — existe evidência de que a PI passou pelo NIT;
+- `NAO_CONFIRMADA` — existe evidência de que a PI não corresponde à atuação do NIT;
+- `INCONCLUSIVA` — as informações disponíveis não permitem conclusão.
+
+Regras de apresentação:
+
+- Exibir a tag "Confirmada" apenas para `CONFIRMADA`;
+- Não apresentar `PENDENTE` como vínculo confirmado;
+- Apresentar `NAO_CONFIRMADA` como resultado de validação, e não como ausência de dados;
+- Exibir uma tag por associação quando a PI estiver relacionada a mais de um NIT.
+
+### 6.7 Territórios de Identidade
 
 Responsável pela exploração territorial dos dados.
 
@@ -288,6 +328,10 @@ Instituição -> Propriedade Intelectual
 Pesquisador -> Instituições
 
 Pesquisador -> Propriedade Intelectual
+
+NIT -> Propriedade Intelectual (com status de validação)
+
+Propriedade Intelectual -> NITs associados
 
 Território -> Municípios -> Instituições
 
@@ -397,7 +441,8 @@ Possibilidades:
 - Comparações por modalidade de PI;
 - Distribuição territorial;
 - Tabelas filtráveis;
-- Mapas temáticos.
+- Mapas temáticos;
+- Tags de validação das associações NIT–PI.
 
 As visualizações devem utilizar dados provenientes da API.
 
@@ -520,8 +565,10 @@ O frontend deverá permitir:
 - Consultar instituições;
 - Consultar pesquisadores;
 - Consultar propriedade intelectual;
+- Consultar associações NIT–PI e seu status de validação;
+- Identificar visualmente PIs validadas por NIT por meio de tags;
 - Consultar Territórios de Identidade;
-- Utilizar filtros;
+- Utilizar filtros, incluindo status de validação da associação NIT–PI;
 - Navegar entre entidades relacionadas;
 - Visualizar indicadores;
 - Consultar informações territoriais;
