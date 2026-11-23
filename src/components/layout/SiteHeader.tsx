@@ -58,6 +58,17 @@ function isActivePath(pathname: string, href: string) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("sidebar-collapsed");
+    if (stored === "1") setCollapsed(true);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("sidebar-collapsed", collapsed);
+    window.localStorage.setItem("sidebar-collapsed", collapsed ? "1" : "0");
+  }, [collapsed]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -83,6 +94,15 @@ export function SiteHeader() {
             <strong>NITs</strong>
           </span>
         </Link>
+        <button
+          className="sidebar-collapse-toggle"
+          type="button"
+          aria-expanded={!collapsed}
+          aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
+          onClick={() => setCollapsed((c) => !c)}
+        >
+          {collapsed ? "›" : "‹"}
+        </button>
         <button
           className="menu-toggle"
           type="button"

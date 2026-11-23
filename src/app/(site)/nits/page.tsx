@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { EmptyState } from "@/components/ui/EmptyState";
+import { NitsView } from "@/components/views/NitsView";
 import { FilterBar } from "@/components/ui/FilterBar";
 import { PageHero } from "@/components/ui/PageHero";
 import { Pagination } from "@/components/ui/Pagination";
@@ -148,45 +149,8 @@ export default async function NitsPage({
             description="Ajuste os filtros ou limpe a busca para ver outros registros."
           />
         ) : (
-          <div className="compact-table" style={{ marginTop: 20 }}>
-            <div className="table-row table-head">
-              <span>NIT</span>
-              <span>Instituição</span>
-              <span>Situação</span>
-              <span>Territórios</span>
-              <span>Status</span>
-            </div>
-            {result.data.map((nit) => (
-              <div className="table-row" key={nit.id}>
-                <span>
-                  <Link href={`/nits/${nit.id}`}>
-                    <b>{nit.nome}</b>
-                  </Link>
-                  {nit.sigla ? <small>{nit.sigla}</small> : null}
-                </span>
-                <span>
-                  <b>{nit.instituicao.nome}</b>
-                  {nit.instituicao.sigla ? (
-                    <small>{nit.instituicao.sigla}</small>
-                  ) : null}
-                </span>
-                <span>{nit.situacao ?? "Não informado"}</span>
-                <span>
-                  {nit.territorios.length > 0
-                    ? nit.territorios.map((territory) => territory.nome).join(", ")
-                    : "Não informado"}
-                </span>
-                <span>
-                  {nit.status_validacao.length > 0 ? (
-                    nit.status_validacao.map((status) => (
-                      <ValidationTag key={status} status={status} />
-                    ))
-                  ) : (
-                    <span className="tag">Sem associação</span>
-                  )}
-                </span>
-              </div>
-            ))}
+          <div style={{ marginTop: 20 }}>
+            <NitsView items={result.data} />
           </div>
         )}
 

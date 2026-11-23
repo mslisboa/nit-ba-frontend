@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { EmptyState } from "@/components/ui/EmptyState";
+import { InstituicoesView } from "@/components/views/InstituicoesView";
 import { FilterBar } from "@/components/ui/FilterBar";
 import { PageHero } from "@/components/ui/PageHero";
 import { Pagination } from "@/components/ui/Pagination";
@@ -121,36 +122,8 @@ export default async function InstituicoesPage({
         {result.data.length === 0 ? (
           <EmptyState title="Nenhuma instituição encontrada" />
         ) : (
-          <div className="compact-table" style={{ marginTop: 20 }}>
-            <div className="table-row table-head">
-              <span>Instituição</span>
-              <span>NIT relacionado</span>
-              <span>Territórios</span>
-              <span>Pesquisadores</span>
-              <span>PIs</span>
-            </div>
-            {result.data.map((institution) => (
-              <div className="table-row" key={institution.id}>
-                <span>
-                  <Link href={`/instituicoes/${institution.id}`}>
-                    <b>{institution.nome}</b>
-                  </Link>
-                  {institution.sigla ? <small>{institution.sigla}</small> : null}
-                </span>
-                <span>
-                  {institution.nit ? (
-                    <Link href={`/nits/${institution.nit.id}`}>
-                      {institution.nit.nome}
-                    </Link>
-                  ) : (
-                    "Sem NIT identificado"
-                  )}
-                </span>
-                <span>{institution.territorios.map((t) => t.nome).join(", ") || "Não informado"}</span>
-                <span>{institution.total_pesquisadores}</span>
-                <span>{institution.total_propriedades_intelectuais}</span>
-              </div>
-            ))}
+          <div style={{ marginTop: 20 }}>
+            <InstituicoesView items={result.data} />
           </div>
         )}
 

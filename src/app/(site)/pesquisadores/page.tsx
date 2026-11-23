@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { EmptyState } from "@/components/ui/EmptyState";
+import { PesquisadoresView } from "@/components/views/PesquisadoresView";
 import { FilterBar } from "@/components/ui/FilterBar";
 import { PageHero } from "@/components/ui/PageHero";
 import { Pagination } from "@/components/ui/Pagination";
@@ -87,28 +88,7 @@ export default async function PesquisadoresPage({
         {result.data.length === 0 ? (
           <EmptyState title="Nenhum pesquisador encontrado" />
         ) : (
-          <div className="compact-table" style={{ marginTop: 20 }}>
-            <div className="table-row table-head">
-              <span>Pesquisador</span>
-              <span>Instituições</span>
-              <span>PIs</span>
-            </div>
-            {result.data.map((researcher) => (
-              <div className="table-row" key={researcher.id}>
-                <span>
-                  <Link href={`/pesquisadores/${researcher.id}`}>
-                    <b>{researcher.nome}</b>
-                  </Link>
-                </span>
-                <span>
-                  {researcher.instituicoes
-                    .map((link) => link.instituicao.sigla ?? link.instituicao.nome)
-                    .join(", ")}
-                </span>
-                <span>{researcher.total_propriedades_intelectuais}</span>
-              </div>
-            ))}
-          </div>
+          <PesquisadoresView items={result.data} />
         )}
 
         <Pagination
