@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Protótipo estático de referência visual (será removido ao final da migração).
+    "prototipos/**",
   ]),
 ]);
 

@@ -1182,3 +1182,129 @@ body[data-version="v1"] .v1-page .subpage-hero { border-top: 3px solid var(--acc
   .researcher-photo-placeholder { width: 88px; }
   .territory-page-map-stage { min-height: 470px; }
 }
+
+/* Componentes compartilhados da Fase 3 */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.filter-bar label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.filter-bar input,
+.filter-bar select {
+  min-width: 180px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--page);
+  color: var(--ink);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.pagination ol {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination a,
+.pagination span {
+  display: inline-flex;
+  min-width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--surface);
+}
+
+.pagination span[aria-current="page"] {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.pagination span[aria-disabled="true"] {
+  color: var(--muted);
+  background: var(--surface-soft);
+}
+
+.status-dot.neutral {
+  color: #526072;
+  background: #eef2f7;
+}
+
+.status-dot.danger {
+  color: #a0263a;
+  background: #fde7ea;
+}
+
+.tag-default {
+  background: var(--surface-soft);
+  color: var(--primary);
+}
+
+.tag-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.tag-muted {
+  background: var(--surface-soft);
+  color: var(--muted);
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.detail-list div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
+}
+
+.detail-list dt {
+  margin-bottom: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.detail-list dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.45;
+}

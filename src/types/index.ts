@@ -1,0 +1,11 @@
+export type * from "./common";
+export type * from "./validacao";
+export type * from "./associacao-nit-pi";
+export type * from "./municipio";
+export type * from "./territorio";
+export type * from "./instituicao";
+export type * from "./nit";
+export type * from "./pesquisador";
+export type * from "./propriedade-intelectual";
+export type * from "./indicadores";
+export type * from "./filtros";
