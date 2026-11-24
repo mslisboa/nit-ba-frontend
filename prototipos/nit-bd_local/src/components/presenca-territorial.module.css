@@ -1,0 +1,97 @@
+.secao, .grafico { margin: 0; border-radius: 18px; scroll-margin-top: 1rem; }
+.cabecalho { display: flex; justify-content: space-between; align-items: start; gap: 1rem; }
+.cabecalho h2 { margin: 0; font-size: clamp(1.4rem, 2vw, 1.75rem); }
+.cabecalho p { max-width: 60ch; margin: .45rem 0 0; font-size: 1rem; color: var(--muted); }
+.cabecalho a { flex: 0 0 auto; color: var(--blue); font-weight: 650; }
+.cabecalho a:hover { text-decoration: underline; }
+
+.busca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  padding: 18px;
+  margin: 22px 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8fafd;
+}
+
+.busca label, .painel label { display: grid; gap: 8px; font-weight: 650; min-width: 0; }
+.busca label { flex: 1 1 14rem; }
+.busca input, .painel select {
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #ccd8e7;
+  border-radius: 8px;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+.busca button, .painel button {
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid #a8bce4;
+  border-radius: 8px;
+  background: white;
+  color: var(--blue);
+  font-weight: 650;
+}
+.busca > span { flex-basis: 100%; color: var(--muted); }
+
+.grade { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; }
+.cartografia { padding: 18px; border-radius: 14px; background: #eef3f8; text-align: center; }
+.cartografia svg { display: block; width: 100%; height: clamp(320px, 44vw, 580px); }
+.cartografia path { fill: #c9daf3; stroke: #496384; stroke-width: 1.15; vector-effect: non-scaling-stroke; cursor: pointer; transition: fill .15s ease, stroke .15s ease; }
+.cartografia path[data-presenca="true"] { fill: #9bbbf0; }
+.cartografia path[data-atenuado="true"] { fill: #e2eaf5; stroke: #788da9; }
+.cartografia path:hover, .cartografia path:focus-visible { fill: #7399d5; stroke: #183e84; stroke-width: 2.5; outline: none; }
+.cartografia path[aria-pressed="true"] { fill: var(--blue); stroke: #163a9c; stroke-width: 2; }
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1rem; margin: .8rem 0; font-size: .8rem; }
+.legenda span::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 5px; border-radius: 50%; background: #c9daf3; }
+.legenda span + span::before { background: #9bbbf0; }
+
+.painel { display: grid; align-content: start; gap: 14px; min-width: 0; }
+.filtros, .resultados { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: #f8fafd; }
+.filtros { display: grid; gap: 12px; }
+@media (prefers-reduced-motion: no-preference) {
+  .filtros select[data-redefinido="true"] { animation: seletorRedefinido .8s ease-out; }
+}
+@keyframes seletorRedefinido {
+  from { background-color: #eaf1fd; border-color: #7195d3; }
+  to { background-color: white; border-color: #ccd8e7; }
+}
+.resultados h3 { margin: 0; font-size: 1.15rem; }
+.resultados p { margin: .5rem 0 0; color: var(--muted); }
+.referencias, .cobertura { list-style: none; padding: 0; margin: 0; }
+.referencias { display: grid; gap: 8px; margin-top: 12px; max-height: 300px; overflow: auto; }
+.referencias a { display: flex; align-items: start; gap: .65rem; padding: .7rem; background: white; border: 1px solid var(--line); border-radius: 8px; }
+.referencias a > div { min-width: 0; }
+.logoReferencia { flex: 0 0 52px; }
+.logoReferencia > div { width: 100%; height: 42px; padding: 4px; border-radius: 6px; font-size: .65rem; overflow-wrap: anywhere; }
+.logoReferencia img { width: 100%; height: 100%; object-fit: contain; }
+.referencias small { display: block; color: var(--muted); }
+.cobertura li { border-top: 1px solid var(--line); padding: .4rem 0; }
+.nota { margin: 0; font-size: .85rem; color: var(--muted); }
+
+.grafico .barra { width: 100%; display: grid; gap: .4rem; margin-top: .6rem; padding: .65rem; text-align: left; border: 1px solid transparent; border-radius: 8px; background: #f8fafd; color: var(--ink); }
+.barra progress { width: 100%; accent-color: var(--blue); }
+.barra span { display: flex; justify-content: space-between; gap: .5rem; }
+.barra[aria-pressed="true"] { border-color: var(--blue); background: var(--blue-soft); }
+
+@media (max-width: 1050px) {
+  .grade { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 650px) {
+  .cabecalho { flex-direction: column; gap: .5rem; }
+  .busca, .cartografia, .filtros, .resultados { padding: 12px; }
+  .cartografia svg { height: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartografia path { transition: none; }
+}

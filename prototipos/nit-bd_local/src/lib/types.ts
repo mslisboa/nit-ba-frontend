@@ -1,0 +1,23 @@
+export type Total = { modalidade: string; escopo: string; papel: string; processos: number | null; estado: string; fonte: string };
+export type Instituicao = { id: string; sigla: string; nome: string; tipo: string; municipio: string; uf: string; papel_localizacao: string;
+  cadastro_validado?: {dados: Record<string, string>; aprovado_em: string; validacoes_publicas: {campo:string;resultado:string;evidencia:string;ressalva:string;validado_em:string}[]} | null;
+  estrutura: string; estado_estrutura: string; periodo_estrutura: string; fonte_estrutura: string; periodo_municipio: string; fonte_municipio: string;
+  estado_atuacao: string; transferencia_executada: string; vinculo_pi_nit: string; totais: Total[] };
+export type CampusEncontrado = Pick<Instituicao, "sigla" | "nome" | "municipio">;
+export type Lista = { items: Instituicao[]; total: number; pagina: number; por_pagina: number; municipios: string[]; campi_encontrados: Record<string, CampusEncontrado[]> };
+export type ReferenciaTerritorial = { id: string; sigla: string; nome: string; municipio: string; estrutura: string | null };
+export type PresencaTerritorialData = {
+  items: (Omit<ReferenciaTerritorial, "estrutura"> & { tipo: string; territorio: string; fonte: string })[];
+  referencias: ReferenciaTerritorial[];
+  sem_territorio_publicado: number;
+  fora_bahia: number;
+};
+export type PerfilData = { instituicao: Instituicao; series: { modalidade: string; ano_entrada: string; processos: number }[];
+  evidencias: { id: string; natureza: string; periodo: string; fonte: string; resumo: string; acesso: string; limite: string; execucao_comprovada: boolean; papel: string; vinculo_processo: string }[];
+  estruturas_historicas: { nome: string; periodo: string; fonte: string }[];
+  pendencias: { campo: string; situacao: string; fonte_necessaria: string }[] };
+export type Categoria = { modalidade: string; ano_entrada: string; dimensao: string; estado_categoria: string; codigo_original: string; versao_descricao: string; estado_classe: string; processos: number };
+export type CategoriasData = { items: Categoria[]; total: number; pagina: number; por_pagina: number };
+export type CoberturaData = { ambiente: string; atualizado_em_utc: string; contagens: Record<string, number>;
+  datasets: { id: string; estado: string; registros: number | null }[]; limites: string[];
+  data?: string; referencias?: number; processos?: number };

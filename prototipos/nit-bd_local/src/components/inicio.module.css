@@ -1,0 +1,139 @@
+.inicio {
+  display: grid;
+  gap: 2rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 300px);
+  align-items: center;
+  gap: 2rem;
+  margin: calc(-1 * var(--jd-recuo-superior)) calc(-1 * var(--jd-recuo-lateral)) 0;
+  padding: 34px var(--jd-recuo-lateral) 28px;
+  background: linear-gradient(135deg, #f0f5ff, #f8fbff 58%, #fff);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  margin: 0 0 1rem;
+}
+
+.hero p, .panorama > p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.busca {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 8px 26px #112f5210;
+}
+
+.campoBusca { display: flex; align-items: center; min-width: 0; padding-left: 8px; color: var(--muted); }
+.campoBusca svg { flex: 0 0 auto; }
+.busca input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: .6rem;
+  border: 1px solid var(--line);
+  border-radius: .4rem;
+  background: white;
+  color: var(--ink);
+}
+.busca input { border: 0; }
+.busca button { min-height: 44px; padding: .55rem .8rem; white-space: nowrap; }
+
+.destaqueTerritorial {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: .85rem;
+  padding: 1.15rem;
+}
+
+.destaqueTerritorial {
+  background: linear-gradient(145deg, #f6f9ff, #eaf1fc);
+  border-radius: 18px;
+  padding: 22px;
+  min-width: 0;
+  text-align: center;
+}
+
+.destaqueTerritorial strong { color: var(--blue); font-size: 1.3rem; line-height: 1.25; }
+.destaqueTerritorial p { margin: .6rem 0 1rem; }
+.destaqueTerritorial a { color: var(--blue); font-weight: 650; }
+
+.orbita {
+  display: grid;
+  place-items: center;
+  position: relative;
+  width: 142px;
+  height: 122px;
+  margin: 0 auto .6rem;
+  color: var(--blue);
+}
+
+.orbita i {
+  position: absolute;
+  width: 136.5px;
+  height: 68.25px;
+  border: 1px solid #a8bde2;
+  border-radius: 50%;
+  transform: rotate(-28deg);
+}
+
+.orbita i:nth-child(2) { transform: rotate(32deg); }
+.orbita i:nth-child(3) { width: 120.75px; transform: rotate(90deg); }
+.orbita i span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #f0f5fd;
+  border-radius: 50%;
+  background: #3d6abb;
+  offset-path: ellipse(50% 50% at 50% 50%);
+  offset-anchor: center;
+  offset-rotate: 0deg;
+  offset-distance: 14%;
+  animation: percursoOrbital 10s linear -1.4s infinite;
+}
+.orbita i:nth-child(2) span { background: #d95362; offset-distance: 48%; animation-duration: 12s; animation-delay: -5.76s; }
+.orbita i:nth-child(3) span { background: #42a38c; offset-distance: 76%; animation-duration: 14s; animation-delay: -10.64s; }
+.orbita b { display: grid; place-items: center; z-index: 1; width: 53px; height: 53px; border-radius: 50%; background: white; font-size: 1.25rem; box-shadow: 0 3px 15px #2453a513; }
+
+@keyframes percursoOrbital {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbita i span { animation: none; }
+}
+.panorama h2 { margin: 0 0 .6rem; }
+.gradePanorama { grid-auto-rows: 1fr; }
+.indicador { display: flex; flex-direction: column; min-width: 0; }
+.indicador .cartaoIndicador { flex: 1; align-content: stretch; }
+.cartaoIndicador > span:last-child { align-self: stretch; grid-template-rows: auto auto 1fr auto; }
+
+@media (max-width: 1050px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .destaqueTerritorial { width: min(100%, 300px); justify-self: center; }
+}
+
+@media (max-width: 650px) {
+  .busca { grid-template-columns: minmax(0, 1fr); }
+  .campoBusca { grid-column: 1 / -1; padding: 0; }
+  .busca input { border: 1px solid var(--line); }
+  .campoBusca svg { display: none; }
+}

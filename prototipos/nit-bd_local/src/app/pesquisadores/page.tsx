@@ -1,0 +1,2 @@
+import { PendenteMvp } from "@/features/mvp/pendente";
+export default function Page() { return <PendenteMvp titulo="Pesquisadores">O catálogo de pesquisadores ainda não foi integrado. SIMCC é a fonte considerada para pesquisadores e instituições, sujeita ao alinhamento e à validação. Nomes presentes na BADEPI não são convertidos automaticamente em cadastros ou vínculos de pesquisadores.</PendenteMvp>; }

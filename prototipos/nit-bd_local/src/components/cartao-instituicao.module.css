@@ -1,0 +1,95 @@
+.cartao {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 4px 16px #173d6810;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.cartao:focus-visible {
+  border-color: var(--blue);
+  box-shadow: 0 12px 26px #173d6824;
+}
+
+.cartao:focus-visible h3 { color: var(--blue); }
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topo { position: relative; padding: 20px 22px 0; justify-content: center; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: min(100%, 190px);
+  min-width: 0;
+  height: 70px;
+  padding: 5px 10px;
+  color: var(--blue);
+}
+.logo img { width: 100%; height: 60px; object-fit: contain; }
+.cartao .logo img { transition: transform .18s ease; }
+.tipo { position: absolute; right: 14px; top: 12px; padding: 5px 9px; border-radius: 1rem; background: var(--blue-soft); color: var(--ink); font-size: 11px; font-weight: 650; }
+.corpo { flex: 1; padding: 16px 22px 20px; }
+.sigla { color: var(--muted); font-size: 11px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+.corpo h3 { margin: .35rem 0 .85rem; font-size: 1.22rem; line-height: 1.35; }
+
+.estrutura { display: grid; gap: .36rem; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 9px; background: #f6f9fd; }
+.estrutura > span { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; }
+.estrutura strong { line-height: 1.4; overflow-wrap: anywhere; }
+
+.medidas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 15px 0 0; }
+.medidas > div { padding: .65rem .24rem; border-top: 1px solid var(--line); text-align: center; }
+.medidas dt { min-height: 2.8em; font-size: .73rem; line-height: 1.4; color: var(--muted); }
+.medidas dd { margin: .16rem 0 0; color: var(--blue); font-size: 1.32rem; font-weight: 700; }
+.medidas dd small { display: block; font-size: .67rem; font-weight: 400; line-height: 1.4; color: var(--muted); }
+.medidas.resumo { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.resumo dt { min-height: 0; font-weight: 650; overflow-wrap: anywhere; }
+.resumo dd.pendente { margin-top: .35rem; color: var(--muted); font-size: .8rem; font-weight: 600; overflow-wrap: anywhere; }
+
+.localizacao { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.localizacao span { padding: 4px 7px; border-radius: 6px; background: #edf3fb; color: var(--ink); font-size: .72rem; }
+.campiEncontrados { margin: .75rem 0 0; padding: .55rem .7rem; list-style: none; border-left: 2px solid var(--blue); background: var(--blue-soft); font-size: .82rem; }
+
+.compacto { display: grid; grid-template-columns: clamp(56px, 12%, 145px) minmax(0, 1fr); align-items: center; padding: 14px; border-radius: 12px; }
+.compacto .topo { padding: 0; }
+.compacto .logo { padding-inline: 4px; }
+.compacto .tipo { display: none; }
+.compacto .corpo { min-width: 0; padding: 0 0 0 12px; }
+.compacto .corpo h3 { margin: .2rem 0 .45rem; font-size: 1.08rem; }
+.compacto .estrutura { padding: .4rem .62rem; }
+.compacto .localizacao { margin-top: 7px; }
+.compacto .medidas { margin-top: 8px; }
+.compacto .medidas > div { padding-block: .45rem; }
+
+@media (min-width: 1051px) {
+  .compacto .corpo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 20px; }
+  .compacto .corpo > :not(.medidas) { grid-column: 1; }
+  .compacto .medidas { grid-column: 2; grid-row: 1 / span 5; align-self: center; margin: 0; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cartao:hover { transform: translateY(-4px); border-color: var(--blue); box-shadow: 0 12px 26px #173d6824; }
+  .cartao:hover .logo img { transform: scale(1.06); }
+  .cartao:hover h3 { color: var(--blue); }
+}
+
+@media (max-width: 560px) {
+  .topo, .corpo { padding-inline: 14px; }
+  .medidas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .medidas dt { min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartao, .cartao .logo img { transition: none; }
+  .cartao:hover, .cartao:hover .logo img { transform: none; }
+}
+
+:global(html[data-jd-movimento-reduzido]) .cartao:hover,
+:global(html[data-jd-movimento-reduzido]) .cartao:hover .logo img { transform: none; }

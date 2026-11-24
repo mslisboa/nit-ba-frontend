@@ -1,0 +1,107 @@
+.filtros {
+  min-inline-size: 0;
+  margin: 18px 0 14px;
+  padding: 12px 14px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8fafd;
+}
+
+.filtros legend {
+  padding-inline: 5px;
+  font-weight: 700;
+}
+
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px 14px;
+  min-inline-size: 0;
+}
+
+.filtros .campos label {
+  display: grid;
+  gap: 5px;
+  max-inline-size: min(100%, 27rem);
+  color: var(--ink);
+  font-size: .82rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.filtros .campos :is(input, select) {
+  box-sizing: border-box;
+  inline-size: auto;
+  min-block-size: 42px;
+  max-inline-size: 100%;
+  padding: .45rem .55rem;
+  border: 1px solid #b9cbd5;
+  border-radius: 6px;
+  background-color: white;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+
+.filtros .campos input[type="number"] {
+  inline-size: min(100%, 7rem);
+  justify-self: start;
+}
+
+.filtros .campos input[type="search"] {
+  inline-size: min(100%, 16rem);
+}
+
+.filtros .campos select {
+  field-sizing: content;
+  min-inline-size: min(100%, 5.5rem);
+  max-inline-size: min(100%, 24rem);
+  justify-self: start;
+  text-overflow: ellipsis;
+}
+
+.filtros .campos select:disabled {
+  background-color: #eef2f7;
+}
+
+.filtros .campos .instituicao, .filtros .campos .instituicao select {
+  inline-size: min(100%, 20rem);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtros .acoes :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 42px;
+  padding: .45rem .75rem;
+  border: 1px solid;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 650;
+}
+
+.filtros .acoes .limpar {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: white;
+}
+
+.filtros .acoes .limpar:hover {
+  filter: brightness(.92);
+}
+
+.filtros .acoes .exportar {
+  background: #e0f5e7;
+  border-color: #87ba9c;
+  color: #1b5636;
+}
+
+.filtros .acoes .exportar:hover {
+  background: #ccebd7;
+}

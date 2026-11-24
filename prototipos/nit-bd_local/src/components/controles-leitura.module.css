@@ -1,0 +1,52 @@
+.acessibilidade, .voltar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--blue);
+  color: white;
+  font-weight: 650;
+}
+
+.acessibilidade { flex-shrink: 0; justify-content: flex-start; margin-bottom: 12px; padding: 6px 12px; }
+.acessibilidade svg, .voltar svg { width: 21px; height: 21px; flex: none; }
+.acessibilidade:hover, .voltar:hover { background: #1543ad; }
+.voltar {
+  position: fixed;
+  inset: auto max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) auto;
+  z-index: 25;
+  width: 44px;
+  box-shadow: 0 3px 12px #10233f30;
+}
+
+.painel {
+  width: min(420px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  color: var(--ink);
+}
+.painel::backdrop { background: #10233f80; }
+.cabecalho, .tamanho { display: flex; align-items: center; gap: 12px; }
+.cabecalho { justify-content: space-between; margin-bottom: 14px; }
+.cabecalho h2 { margin: 0; }
+.painel fieldset { min-width: 0; margin: 0; padding: 10px; border: 1px solid var(--line); border-radius: 8px; }
+.painel button { min-width: 44px; min-height: 44px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; color: var(--blue); background: var(--blue-soft); }
+.painel button:disabled { opacity: .55; }
+.opcoes { display: grid; gap: 4px; margin: 12px 0; }
+.opcoes label { display: flex; align-items: center; min-height: 36px; gap: 8px; cursor: pointer; }
+.opcoes input { accent-color: var(--blue); width: 18px; height: 18px; flex: none; }
+
+@media (min-width: 901px) {
+  :global([data-recolhida="true"]) .acessibilidade { justify-content: center; padding-inline: 0; }
+  :global([data-recolhida="true"]) .acessibilidade span { display: none; }
+}
+
+@media (max-width: 900px) {
+  .acessibilidade { margin: 8px 0 0; align-self: flex-start; }
+}

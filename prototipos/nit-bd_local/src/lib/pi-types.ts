@@ -1,0 +1,14 @@
+export type ModPI = "PTN" | "PRG" | "MRC" | "DI" | "IG" | "TCI";
+export type EscopoPI = "RECORTE_BA" | "DOCUMENTO_EXATO_NACIONAL";
+export type FontePI = { dataset_id: string; arquivo: string; zip: string; membro_sha256: string; zip_sha256: string; run_observacao: string; execucao_etl_id: string; raw_id: string; registro_logico: number; row_hash: string; url_oficial: string };
+export type FotoPI = { identidade: string; identidade_detalhamento: string; identidade_conferencia: string; identidade_derivadas: string; execucao_etl_id: string; verificado_utc: string; limites: string[] };
+export type AchadoPI = { dimensao: string; codigo: string; campo: string; natureza: string; dataset_id: string; raw_id: string };
+export type ItemPI = { processo_id: string; modalidade: ModPI; numero_original: string; titulos_originais: string[]; ano_entrada: number | null; estado_ano_entrada: string; ocorrencias_classificacoes: number; ocorrencias_despachos: number; situacao_juridica: string; acompanhamento_nit: string; achados: AchadoPI[] };
+export type ResumoPI = { total: number; fotografia: FotoPI; modalidades: { modalidade: ModPI; processos_distintos: number; sem_titulo: number; sem_classificacoes: number; sem_despachos: number; com_alertas_datas: number }[]; series: { modalidade: ModPI; ano_entrada: number | null; processos_distintos: number }[] };
+export type ListaPI = { total: number; pagina: number; por_pagina: number; items: ItemPI[]; anos_disponiveis: number[]; fotografia: FotoPI };
+export type CategoriaPI = { dimensao: string; codigo_original: string; versao_original: string | null; descricao_original: string | null; estado_original: string | null; processos_distintos: number };
+export type CategoriasPI = { total: number; items: CategoriaPI[] };
+export type DetalhePI = { processo: ItemPI; fotografia: FotoPI; data_entrada_original: string | null; data_deposito_original: string | null; fonte_identidade_institucional: string; fontes_centrais: FontePI[]; fontes_associacao_institucional: FontePI[];
+  classificacoes: (Omit<CategoriaPI, "processos_distintos"> & { fonte: FontePI })[];
+  despachos: { total: number; pagina: number; por_pagina: number; items: { codigo_original: string | null; descricao_original: string | null; data_publicacao_original: string | null; data_publicacao: string | null; rpi_original: string | null; fonte: FontePI }[] };
+  participantes_resumo: { papel: string; ocorrencias: number }[]; lacunas: { dataset_filho: string; estado: string }[]; pendencias_por_estado: Record<string, number> };
